@@ -3,7 +3,8 @@ import './App.css';
 import DiskussioPost from './DiskussioPost';
 import firebase from 'firebase/app'
 import _ from 'lodash'
-
+import AddPost from './AddPost';
+import moment from 'moment';
 
 //console.log(dummyData);
 class App extends Component {
@@ -20,6 +21,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <AddPost onAdd={(diskussioPost) =>{
+          const newDiskussioPost = {...diskussioPost,comment:5, submitted: moment().format()}
+          //this.setState({diskussioPost: this.state.diskussioPosts.concat(newDiskussioPost)})}
+          firebase.database().ref('posts').push(newDiskussioPost)}
+          } />
       {_.map(this.state.diskussioPosts, diskussioPost => {
         return (
          <div>

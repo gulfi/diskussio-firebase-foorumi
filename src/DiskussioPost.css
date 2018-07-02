@@ -1,5 +1,5 @@
 .diskussioPost{
     display:flex;
-    flex-direction: Column;
+    flex-direction: column;
     margin:30px;
 }
