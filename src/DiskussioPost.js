@@ -8,6 +8,7 @@ export default (props) => {
             <a href="www.test.com">{props.title}</a>
             <div >
                 <p >{props.comments} Comments </p>
+                <p>Submitted {props.submitted}</p>
             </div>
         </div>
     )
