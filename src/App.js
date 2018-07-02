@@ -1,19 +1,32 @@
 import React, { Component } from 'react';
 import './App.css';
 import DiskussioPost from './DiskussioPost';
-import dummyData from './data/dummyData';
+import firebase from 'firebase/app'
+import _ from 'lodash'
 
-console.log(dummyData);
+
+//console.log(dummyData);
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      diskussioPosts: {},
+    }
+    firebase.database().ref('posts')
+    .on('value', (snapshot)=> {
+        this.setState({diskussioPosts: snapshot.val()})
+     })
+  }
   render() {
     return (
       <div className="App">
-      {dummyData.map(diskussioPost => {
+      {_.map(this.state.diskussioPosts, diskussioPost => {
         return (
          <div>
          <DiskussioPost 
          title={diskussioPost.title}
          comment={diskussioPost.comments}
+         submitted={diskussioPost.submitted}
           />
           </div>
         )
